@@ -8,5 +8,5 @@ from config.db import Base
 
 class PointsModel(Base):
     graph_id = Column(UUID(as_uuid=True), default=uuid4, nullable=False)
-    points_X = Column(Float)
-    points_Y = Column(Float)
+    point_X = Column(Float)
+    point_Y = Column(Float)

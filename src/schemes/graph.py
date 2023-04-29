@@ -1,7 +1,10 @@
+from uuid import UUID
+
 from .base import BaseSchema
 
 
 class PointsSchema(BaseSchema):
 
-    points_x: list[float]
-    points_y: list[float]
+    graph_id: UUID
+    points_X: list[float]
+    points_Y: list[float]

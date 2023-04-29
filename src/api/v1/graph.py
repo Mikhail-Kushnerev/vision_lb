@@ -4,8 +4,10 @@ from fastapi import APIRouter, UploadFile, Depends
 from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from config.db import async_session, get_session
+from config.db import get_session
+from crud.graph import grap_crud
 from schemes.graph import PointsSchema
+
 
 graph_router = APIRouter(prefix='/graphic')
 
@@ -17,6 +19,7 @@ async def set_matrix(
         params: PointsSchema,
         session: AsyncSession = Depends(get_session)
 ):
+    await grap_crud.create(params, session)
     return 'Done!'
 
 

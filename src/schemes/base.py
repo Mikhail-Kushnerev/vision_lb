@@ -20,8 +20,6 @@ def orjson_dumps(obj, *, default):
 
 class BaseSchema(BaseModel):
 
-    id: UUID
-
     class Config:
         orm_mode = True
         json_loads = orjson.loads
