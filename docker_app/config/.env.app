@@ -1,0 +1,3 @@
+APP_HOST=localhost
+APP_PORT=8100
+APP_DEBUG=True

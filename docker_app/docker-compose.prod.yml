@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    image: postgres:latest
+    env_file:
+      - ./config/.env.db
+    volumes:
+      - ...
+    restart: always
+    expose:
+      - 5432
+
+  backend:
+    image: ...
+    restart: always
+    env_file:
+      - ./config/.env
+    expose:
+      - 8100
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_datas:
