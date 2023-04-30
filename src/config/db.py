@@ -20,6 +20,7 @@ class PreBase:
 Base = declarative_base(cls=PreBase)
 
 engine = create_async_engine(DB_SETTINGS.pg_dsn)
+
 async_session = sessionmaker(
     engine, class_=AsyncSession, expire_on_commit=False
 )
@@ -28,4 +29,3 @@ async_session = sessionmaker(
 async def get_session() -> AsyncSession:
     async with async_session() as session:
         yield session
-

@@ -1,17 +1,10 @@
-from fastapi.encoders import jsonable_encoder
-from sqlalchemy.ext.asyncio import AsyncSession
-
-from services.preparation import PreparationGraph
-
-
 class BaseCRUD:
-    def __init__(self, model):
+    def __init__(self, model, client):
         self._model = model
+        self._client = client
 
-    async def create(self, points, session: AsyncSession):
-        obj = jsonable_encoder(points)
-        target = PreparationGraph(obj)
-        for value in target.prepare():
-            item = self._model(**value)
-            session.add(item)
-        await session.commit()
+    async def get(self, obj_id, *args):
+        pass
+
+    async def create(self, points):
+        pass

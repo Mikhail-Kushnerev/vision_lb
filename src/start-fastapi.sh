@@ -15,14 +15,15 @@ wait_database()
   echo "$TYPE started"
 }
 
-if [ ${CACHE_DB_TYPE} = "postgres" ]
+if [ ${DB_TYPE} = "postgres" ]
   then
-    wait_database $PG_HOST $PG_PORT $DB_TYPE
+    wait_database $DB_HOST $DB_PORT $DB_TYPE
 fi
+
+alembic upgrade head
 
 gunicorn main:app --workers 4\
  --worker-class uvicorn.workers.UvicornWorker\
-  --bind 0.0.0.0:8101\
-   --log-level "$LOGGING_LEVEL"
+  --bind 0.0.0.0:8100
 
 exec "$@"

@@ -1,1 +1,1 @@
-from .graph import PointsModel # noqa
+from .track import PointsModel # noqa

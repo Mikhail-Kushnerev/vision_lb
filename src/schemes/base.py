@@ -4,6 +4,9 @@ from pydantic import BaseModel
 import orjson
 
 
+
+
+
 def orjson_dumps(obj, *, default):
     """
     Метод ускоряет работу с JSON
@@ -24,4 +27,3 @@ class BaseSchema(BaseModel):
         orm_mode = True
         json_loads = orjson.loads
         json_dumps = orjson_dumps
-
