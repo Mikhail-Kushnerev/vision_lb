@@ -9,8 +9,8 @@ services:
     volumes:
       -  postgres_datas:/var/lib/postgresql/data/
     restart: always
-    ports:
-      - 5432:5432
+    expose:
+      - 5432
 
   backend:
     build:

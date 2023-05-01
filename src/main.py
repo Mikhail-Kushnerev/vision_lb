@@ -1,12 +1,9 @@
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import sessionmaker
 from uvicorn import run
 
 from api.routers import main_router
-# from config.db import engine, get_session
-from config.settings import APP_SETTINGS, DB_SETTINGS
+from config.settings import APP_SETTINGS
 
 app = FastAPI(
     docs_url='/api/openapi',

@@ -1,3 +1,5 @@
+"""Модуль описывания представления трэка."""
+
 from uuid import UUID
 
 from pydantic import Field, BaseModel
@@ -5,18 +7,30 @@ from pydantic import Field, BaseModel
 from .base import BaseSchema
 
 
-class Point(BaseModel):
-    x: float
-    y: float
+class PointSchema(BaseModel):
+    """Класс описывает точки по осям Х и У."""
+
+    x: float = Field(
+        ...,
+        title='Точка X',
+        description='Значение точки на оси X'
+    )
+    y: float = Field(
+        ...,
+        title='Точка Y',
+        description='Значение точки на оси Y'
+    )
 
 
-class Body(BaseSchema):
-    graph_id: UUID = Field(
+class BodySchema(BaseSchema):
+    """Класс описывает тело-запроса по созданию трэка."""
+
+    track_id: UUID = Field(
         ...,
         title='идентификатор трэка',
         description='Этот `id` необходим для построения '
     )
-    points: list[Point] = Field(
+    points: list[PointSchema] = Field(
         ...,
         title='Координаты точек',
         description='Значения точек по оси Х и У'

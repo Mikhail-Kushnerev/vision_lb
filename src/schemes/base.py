@@ -1,10 +1,7 @@
-from uuid import UUID
 
-from pydantic import BaseModel
+
 import orjson
-
-
-
+from pydantic import BaseModel
 
 
 def orjson_dumps(obj, *, default):
@@ -22,6 +19,7 @@ def orjson_dumps(obj, *, default):
 
 
 class BaseSchema(BaseModel):
+    """Класс базовой Pydantic-схемы."""
 
     class Config:
         orm_mode = True

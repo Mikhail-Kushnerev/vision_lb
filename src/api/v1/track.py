@@ -3,25 +3,28 @@ from uuid import UUID
 from fastapi import APIRouter, UploadFile, Depends, File
 from fastapi.responses import FileResponse
 
-from schemes.track import Body
+from schemes.track import BodySchema
 from services.track import get_tack_service, TrackService
 
-graph_router = APIRouter()
+track_router = APIRouter()
 
 
-@graph_router.post(
+@track_router.post(
     '/set-points',
-    # status_code=204
+    summary='Новый трэк',
+    response_description='Трэк сохранен',
 )
 async def set_params(
-        params: Body,
+        params: BodySchema,
         track_service: TrackService = Depends(get_tack_service)
 ):
     return await track_service.create_graph(params)
 
 
-@graph_router.post(
-    '/plot'
+@track_router.post(
+    '/plot',
+    summary='Построение трэка',
+    response_description='Трэк построен',
 )
 async def plot_graph(
         id_: UUID,
