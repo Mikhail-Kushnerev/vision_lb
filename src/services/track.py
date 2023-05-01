@@ -22,6 +22,8 @@ from utils.constants import Answer
 class TrackService:
     """Класс-обработчик треков."""
 
+    __slots__ = ('client', '_crud', '_manager')
+
     def __init__(self, client):
         """
         Метод инициализирует CRUD-объект и обработчки файлов.
@@ -105,4 +107,13 @@ class TrackService:
 def get_tack_service(
         client: AsyncSession = Depends(get_session)
 ):
+    """
+    Метод возвращает сервис обработки треков
+
+    Args:
+        client: сессия подключения к БД
+
+    Returns:
+        TrackService
+    """
     return TrackService(client)

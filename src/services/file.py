@@ -13,6 +13,8 @@ from utils.exceptions import WrongFormatError
 class FileManager:
     """Класс для обработки файлов."""
 
+    __slots__ = ('_format', '_path')
+
     def __init__(self) -> None:
         """Метод инициализирует расширение и путь файла."""
         self._format: str | None = None

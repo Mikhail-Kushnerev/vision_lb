@@ -48,7 +48,7 @@ API сервис построения треков на изображении �
 1. Задание параметров трека
 
 ```
-POST /graphic/api/v1/set-points
+POST /track/api/v1/set-points
 Content-Type: application/json
 ```
 
@@ -68,7 +68,7 @@ Content-Type: application/json
 2. Отрисовка трека
 
 ```
-POST /graphic/api/v1/plot
+POST /track/api/v1/plot
 Content-Type: multipart/form-data
 ```
 

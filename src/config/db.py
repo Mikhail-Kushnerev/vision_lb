@@ -1,3 +1,5 @@
+"""Модуль подключение БД."""
+
 from uuid import uuid4
 
 from sqlalchemy import Column
