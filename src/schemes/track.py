@@ -1,4 +1,4 @@
-"""Модуль описывания представления трэка."""
+"""Pydantic-схема описывания трека."""
 
 from uuid import UUID
 
@@ -23,11 +23,11 @@ class PointSchema(BaseModel):
 
 
 class BodySchema(BaseSchema):
-    """Класс описывает тело-запроса по созданию трэка."""
+    """Класс описывает тело-запроса по созданию трека."""
 
     track_id: UUID = Field(
         ...,
-        title='идентификатор трэка',
+        title='идентификатор трека',
         description='Этот `id` необходим для построения '
     )
     points: list[PointSchema] = Field(

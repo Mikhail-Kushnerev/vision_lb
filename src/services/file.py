@@ -28,7 +28,7 @@ class FileManager:
         file_name = in_file.filename
         format = file_name.split('.')[-1]
         match format.lower():
-            case 'jpg' | 'png':
+            case 'png':
                 self._path = UPLOAD_DIR / file_name
                 self._format = format
             case _:

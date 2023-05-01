@@ -1,4 +1,4 @@
-
+"""Базовая Pydantic-схема для классов наследников."""
 
 import orjson
 from pydantic import BaseModel

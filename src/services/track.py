@@ -1,4 +1,4 @@
-"""Модуль для работы с трэками."""
+"""Модуль для работы с треками."""
 
 from functools import lru_cache
 from http import HTTPStatus
@@ -20,7 +20,7 @@ from utils.constants import Answer
 
 
 class TrackService:
-    """Класс-обработчик трэков."""
+    """Класс-обработчик треков."""
 
     def __init__(self, client):
         """
@@ -34,10 +34,10 @@ class TrackService:
 
     async def create_track(self, points: BodySchema) -> dict | str:
         """
-        Метод создания трэка.
+        Метод создания трека.
 
         Args:
-            points: параметры трэка (`id` и точки)
+            points: параметры трека (`id` и точки)
 
         Returns:
             Сообщение об успешном или неуспешном создании.
@@ -55,10 +55,10 @@ class TrackService:
 
     async def get_track_by_id(self, track_id: UUID) -> list[PointSchema] | dict:
         """
-        Метод возвращает точки трэка по его `id`.
+        Метод возвращает точки трека по его `id`.
 
         Args:
-            track_id: идентификатор трэка.
+            track_id: идентификатор трека.
         Returns:
             точки по осям Х и У
         """
@@ -77,14 +77,14 @@ class TrackService:
 
     async def draw_track_on_img(self, track_id: UUID, image: UploadFile) -> Path:
         """
-        Метод строит заданный трэк на входном изображении
+        Метод строит заданный трек на входном изображении
 
         Args:
-            track_id: идентификатор трэка
+            track_id: идентификатор трека
             image: входное изображение
 
         Returns:
-            Путь до нарисованного трэка
+            Путь до нарисованного трека
         """
 
         points = await self.get_track_by_id(track_id)

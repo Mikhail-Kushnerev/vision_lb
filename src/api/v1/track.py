@@ -1,4 +1,4 @@
-"""Модуль с API трэка"""
+"""Модуль с API трека"""
 
 from uuid import UUID
 
@@ -13,18 +13,18 @@ track_router = APIRouter()
 
 @track_router.post(
     '/set-points',
-    summary='Новый трэк',
-    response_description='Трэк сохранен',
+    summary='Новый трек',
+    response_description='трек сохранен',
 )
 async def set_params(
         params: BodySchema,
         track_service: TrackService = Depends(get_tack_service)
 ):
     """
-    API сохраняет параметры для указанного трэка.
+    API сохраняет параметры для указанного трека.
 
     Args:
-        params: параметры трэка (идентификатор и значения точек)
+        params: параметры трека (идентификатор и значения точек)
 
     Returns:
         Результат сохранения
@@ -34,23 +34,23 @@ async def set_params(
 
 @track_router.post(
     '/plot',
-    summary='Построение трэка',
-    response_description='Трэк построен',
+    summary='Построение трека',
+    response_description='трек построен',
 )
 async def plot_track(
-        id_: UUID,
-        file: UploadFile = File(...),
+        track_id: UUID,
+        image: UploadFile = File(...),
         track_service: TrackService = Depends(get_tack_service)
 ) -> FileResponse:
     """
-    API выстраивает заданный трэк на изображении
+    API выстраивает заданный трек на изображении
 
     Args:
-        id_: идентификатор трэка
-        file: файл для отрисовки
+        track_id: идентификатор трека
+        image: файл для отрисовки
 
     Returns:
-        Отрисованный трэк
+        Отрисованный трек
     """
-    drawed_track = await track_service.draw_track_on_img(id_, file)
+    drawed_track = await track_service.draw_track_on_img(track_id, image)
     return FileResponse(drawed_track)

@@ -1,4 +1,4 @@
-"""Модуль CRUD для трэков."""
+"""Модуль CRUD для треков."""
 
 from uuid import UUID
 
