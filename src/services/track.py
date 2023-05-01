@@ -32,7 +32,7 @@ class TrackService:
         self._crud: BaseCRUD = get_crud_by_client(self.__class__)(PointsModel, client)
         self._manager = FileManager()
 
-    async def create_graph(self, points: BodySchema) -> dict | str:
+    async def create_track(self, points: BodySchema) -> dict | str:
         """
         Метод создания трэка.
 

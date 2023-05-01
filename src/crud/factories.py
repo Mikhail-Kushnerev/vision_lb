@@ -1,8 +1,8 @@
-from .track import GraphCRUD
+from .track import TrackCRUD
 
 
 def get_crud_by_client(crud_name):
     crud = {
-        'trackservice': GraphCRUD
+        'trackservice': TrackCRUD
     }
     return crud[crud_name.__name__.lower()]

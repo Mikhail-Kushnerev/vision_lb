@@ -1,8 +1,8 @@
-"""init_migration
+"""init migrations
 
-Revision ID: 82ab44040124
-Revises: 6c3091b13b83
-Create Date: 2023-04-29 21:18:36.505997
+Revision ID: 7027a0ede7b8
+Revises: 
+Create Date: 2023-05-01 14:16:27.635907
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '82ab44040124'
-down_revision = '6c3091b13b83'
+revision = '7027a0ede7b8'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -21,8 +21,8 @@ def upgrade() -> None:
     op.create_table('pointsmodel',
     sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
     sa.Column('track_id', postgresql.UUID(as_uuid=True), nullable=False),
-    sa.Column('points_X', sa.Float(), nullable=True),
-    sa.Column('points_Y', sa.Float(), nullable=True),
+    sa.Column('point_X', sa.Float(), nullable=False),
+    sa.Column('point_Y', sa.Float(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('id')
     )

@@ -1,3 +1,5 @@
+"""Модуль CRUD для трэков."""
+
 from uuid import UUID
 
 from sqlalchemy import select
@@ -6,7 +8,7 @@ from schemes.track import PointSchema, BodySchema
 from .base import BaseCRUD
 
 
-class GraphCRUD(BaseCRUD):
+class TrackCRUD(BaseCRUD):
 
     async def get(self, obj_id: UUID) -> list[PointSchema]:
 

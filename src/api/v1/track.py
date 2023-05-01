@@ -1,3 +1,5 @@
+"""Модуль с API трэка"""
+
 from uuid import UUID
 
 from fastapi import APIRouter, UploadFile, Depends, File
@@ -18,7 +20,16 @@ async def set_params(
         params: BodySchema,
         track_service: TrackService = Depends(get_tack_service)
 ):
-    return await track_service.create_graph(params)
+    """
+    API сохраняет параметры для указанного трэка.
+
+    Args:
+        params: параметры трэка (идентификатор и значения точек)
+
+    Returns:
+        Результат сохранения
+    """
+    return await track_service.create_track(params)
 
 
 @track_router.post(
@@ -26,10 +37,20 @@ async def set_params(
     summary='Построение трэка',
     response_description='Трэк построен',
 )
-async def plot_graph(
+async def plot_track(
         id_: UUID,
         file: UploadFile = File(...),
         track_service: TrackService = Depends(get_tack_service)
 ) -> FileResponse:
+    """
+    API выстраивает заданный трэк на изображении
+
+    Args:
+        id_: идентификатор трэка
+        file: файл для отрисовки
+
+    Returns:
+        Отрисованный трэк
+    """
     drawed_track = await track_service.draw_track_on_img(id_, file)
     return FileResponse(drawed_track)

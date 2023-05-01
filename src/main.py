@@ -1,3 +1,5 @@
+"""Модуль, запускающий `uvicorn` сервер для FastApi-приложения."""
+
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 from uvicorn import run
@@ -10,7 +12,7 @@ app = FastAPI(
     openapi_url='/api/openapi.json',
     default_response_class=ORJSONResponse,
 )
-app.include_router(main_router, prefix='/graphic')
+app.include_router(main_router, prefix='/track')
 
 
 if __name__ == '__main__':

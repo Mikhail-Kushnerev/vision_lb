@@ -6,8 +6,8 @@ from uuid import UUID
 import aiofiles
 from fastapi import UploadFile
 
-from utils.exceptions import WrongFormatError
 from utils.constants import UPLOAD_DIR
+from utils.exceptions import WrongFormatError
 
 
 class FileManager:
