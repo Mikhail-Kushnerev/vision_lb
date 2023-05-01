@@ -13,19 +13,16 @@ services:
       - 5432
 
   backend:
-    build:
-      context: ../src
-      dockerfile: Dockerfile
+    image: mikhailkushnerev/vslb:v1.0.5
     restart: always
     env_file:
       - ./config/.env.app
-    volumes:
-      - ../src/downloads/:/downloads
     expose:
       - 8100
 
   nginx:
     image: nginx:latest
+    restart: always
     volumes:
       - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./etc/nginx/configs:/etc/nginx/conf.d:ro
@@ -35,7 +32,7 @@ services:
       - postgres
       - backend
     ports:
-      - 80:80
+      - "80:80"
 
 volumes:
   postgres_datas:
