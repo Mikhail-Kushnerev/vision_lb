@@ -72,7 +72,7 @@ POST /track/api/v1/plot
 Content-Type: multipart/form-data
 ```
 
-**Request Parameters**
+**Request Body**
 ```
 track_id = <UUID>
 image = <image.png>

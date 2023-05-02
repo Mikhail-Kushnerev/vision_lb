@@ -2,11 +2,11 @@
 
 from functools import lru_cache
 from http import HTTPStatus
-from pathlib import Path
 from uuid import UUID
 
 import matplotlib.pyplot as plt
 from fastapi import Depends, HTTPException, UploadFile
+from fastapi.responses import FileResponse
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -17,6 +17,7 @@ from models import PointsModel
 from schemes.track import BodySchema, PointSchema
 from services.file import FileManager
 from utils.constants import Answer
+from utils.exceptions import exc_handler
 
 
 class TrackService:
@@ -77,7 +78,8 @@ class TrackService:
         else:
             return points
 
-    async def draw_track_on_img(self, track_id: UUID, image: UploadFile) -> Path:
+    @exc_handler
+    async def draw_track_on_img(self, track_id: UUID, image: UploadFile) -> FileResponse | str:
         """
         Метод строит заданный трек на входном изображении
 
@@ -100,7 +102,7 @@ class TrackService:
         plt.savefig(file_name)
         plt.close()
 
-        return file_name
+        return FileResponse(file_name)
 
 
 @lru_cache

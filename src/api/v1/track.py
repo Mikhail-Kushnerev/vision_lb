@@ -2,8 +2,7 @@
 
 from uuid import UUID
 
-from fastapi import APIRouter, UploadFile, Depends, File
-from fastapi.responses import FileResponse
+from fastapi import APIRouter, UploadFile, Depends, File, Form
 
 from schemes.track import BodySchema
 from services.track import get_tack_service, TrackService
@@ -35,13 +34,13 @@ async def set_params(
 @track_router.post(
     '/plot',
     summary='Построение трека',
-    response_description='трек построен',
+    response_description='трек построен'
 )
 async def plot_track(
-        track_id: UUID,
+        track_id: UUID = Form(...),
         image: UploadFile = File(...),
         track_service: TrackService = Depends(get_tack_service)
-) -> FileResponse:
+):
     """
     API выстраивает заданный трек на изображении
 
@@ -52,5 +51,4 @@ async def plot_track(
     Returns:
         Отрисованный трек
     """
-    drawed_track = await track_service.draw_track_on_img(track_id, image)
-    return FileResponse(drawed_track)
+    return await track_service.draw_track_on_img(track_id, image)

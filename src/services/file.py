@@ -48,6 +48,7 @@ class FileManager:
         """
 
         await self._is_correct_file(in_file)
+
         async with aiofiles.open(self._path, mode="wb") as file:
             while content := await in_file.read(1024):
                 await file.write(content)

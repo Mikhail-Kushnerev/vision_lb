@@ -13,5 +13,6 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 class Answer(str, Enum):
     """Класс описывает Response-ответы."""
     DONE_CREATE_TRACK = 'Ваш трек был успешно сохранён!'
-    FAIL_CREATE_TRACK = 'По заданным параметрам не удалось создать!'
-    NOT_EXIST_TRACK = 'трек с заданным `id` отсутствует!'
+    FAIL_CREATE_TRACK = 'По заданным параметрам не удалось создать трек!'
+    NOT_EXIST_TRACK = 'Трек с заданным `id` отсутствует!'
+    FAIL_PLOT = 'Не удалось построить трек! Проверьте, чтобы расширение изображения было `.png`'
